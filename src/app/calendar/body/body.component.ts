@@ -25,23 +25,36 @@ import {
 	CalendarView
 } from "angular-calendar";
 import { colors } from "src/shared/colors";
+import { CalendarService } from "src/services/calendar.service";
 
 @Component({
 	selector: "app-body",
-	changeDetection: ChangeDetectionStrategy.OnPush,
 	templateUrl: "./body.component.html",
 	styleUrls: ["./body.component.less"]
 })
 export class BodyComponent implements OnInit {
-	ngOnInit() {}
+	view: any;
+	CalendarView: any;
+	viewDate: Date;
+
+	constructor(
+		private modal: NgbModal,
+		private calendarService: CalendarService
+	) {}
+
+	ngOnInit() {
+		this.view = this.calendarService.getView();
+		this.CalendarView = this.calendarService.getCalendarView();
+		this.viewDate = this.calendarService.getViewDate();
+		this.calendarService.viewChanged.subscribe((view: CalendarView) => {
+			this.view = view;
+		});
+		this.calendarService.viewDateChanged.subscribe((viewDate: Date) => {
+			this.viewDate = viewDate;
+		});
+	}
 
 	@ViewChild("modalContent", { static: true }) modalContent: TemplateRef<any>;
-
-	view: CalendarView = CalendarView.Month;
-
-	CalendarView = CalendarView;
-
-	viewDate: Date = new Date();
 
 	modalData: {
 		action: string;
@@ -110,8 +123,6 @@ export class BodyComponent implements OnInit {
 	];
 
 	activeDayIsOpen: boolean = true;
-
-	constructor(private modal: NgbModal) {}
 
 	dayClicked({
 		date,

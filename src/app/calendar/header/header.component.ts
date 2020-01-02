@@ -14,6 +14,17 @@ export class HeaderComponent implements OnInit {
 	ngOnInit() {
 		this.view = this.calendarService.getView();
 		this.viewDate = this.calendarService.getViewDate();
+		this.calendarService.viewChanged.subscribe((view: CalendarView) => {
+			this.view = view;
+		});
+	}
+
+	changeView(view: CalendarView) {
+		this.calendarService.setView(view);
+	}
+
+	changeViewDate(viewDate: Date) {
+		this.calendarService.setViewDate(viewDate);
 	}
 
 	@Input() locale: string = "en";

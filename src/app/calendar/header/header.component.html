@@ -6,7 +6,7 @@
 				mwlCalendarPreviousView
 				[view]="view"
 				[(viewDate)]="viewDate"
-				(viewDateChange)="viewDateChange.next(viewDate)"
+				(viewDateChange)="changeViewDate(viewDate)"
 			>
 				Previous
 			</div>
@@ -14,7 +14,7 @@
 				class="btn btn-outline-secondary"
 				mwlCalendarToday
 				[(viewDate)]="viewDate"
-				(viewDateChange)="viewDateChange.next(viewDate)"
+				(viewDateChange)="changeViewDate(viewDate)"
 			>
 				Today
 			</div>
@@ -23,7 +23,7 @@
 				mwlCalendarNextView
 				[view]="view"
 				[(viewDate)]="viewDate"
-				(viewDateChange)="viewDateChange.next(viewDate)"
+				(viewDateChange)="changeViewDate(viewDate)"
 			>
 				Next
 			</div>
@@ -36,21 +36,21 @@
 		<div class="btn-group">
 			<div
 				class="btn btn-primary"
-				(click)="viewChange.emit('month')"
+				(click)="changeView('month')"
 				[class.active]="view === 'month'"
 			>
 				Month
 			</div>
 			<div
 				class="btn btn-primary"
-				(click)="viewChange.emit('week')"
+				(click)="changeView('week')"
 				[class.active]="view === 'week'"
 			>
 				Week
 			</div>
 			<div
 				class="btn btn-primary"
-				(click)="viewChange.emit('day')"
+				(click)="changeView('day')"
 				[class.active]="view === 'day'"
 			>
 				Day
