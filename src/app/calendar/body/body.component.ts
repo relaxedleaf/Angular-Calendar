@@ -1,10 +1,10 @@
 import {
 	Component,
+	OnInit,
 	ChangeDetectionStrategy,
 	ViewChild,
 	TemplateRef
 } from "@angular/core";
-
 import {
 	startOfDay,
 	endOfDay,
@@ -24,29 +24,17 @@ import {
 	CalendarEventTimesChangedEvent,
 	CalendarView
 } from "angular-calendar";
-
-const colors: any = {
-	red: {
-		primary: "#ad2121",
-		secondary: "#FAE3E3"
-	},
-	blue: {
-		primary: "#1e90ff",
-		secondary: "#D1E8FF"
-	},
-	yellow: {
-		primary: "#e3bc08",
-		secondary: "#FDF1BA"
-	}
-};
+import { colors } from "src/shared/colors";
 
 @Component({
-	selector: "app-root",
+	selector: "app-body",
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	templateUrl: "./app.component.html",
-	styleUrls: ["./app.component.less"]
+	templateUrl: "./body.component.html",
+	styleUrls: ["./body.component.less"]
 })
-export class AppComponent {
+export class BodyComponent implements OnInit {
+	ngOnInit() {}
+
 	@ViewChild("modalContent", { static: true }) modalContent: TemplateRef<any>;
 
 	view: CalendarView = CalendarView.Month;
