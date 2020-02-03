@@ -1,7 +1,48 @@
-<div class="container">
-	<app-navbar></app-navbar>
-</div>
-<br />
-<app-calendar></app-calendar>
+<ng-sidebar-container style="height: 100vh;">
+	<!-- A sidebar -->
+	<ng-sidebar [(opened)]="_opened" mode="push">
+		<header>
+			<a href="#">My App</a>
+		</header>
+		<br />
+		<ul class="side_nav">
+			<li>
+				<a>
+					<div class="row">
+						<div class="col-2">
+							<fa-icon [icon]="faTachometerAlt"></fa-icon>
+						</div>
+						<div class="col-2">
+							<p>Dashboard</p>
+						</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a>
+					<div class="row">
+						<div class="col-2">
+							<fa-icon [icon]="faCalendarAlt"></fa-icon>
+						</div>
+						<div class="col-2">
+							<p>Calender</p>
+						</div>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</ng-sidebar>
+
+	<!-- Page content -->
+	<div ng-sidebar-content>
+		<app-navbar (onToggle)="_toggleSidebar()"></app-navbar>
+		<br />
+		<div class="row">
+			<div class="col">
+				<app-calendar></app-calendar>
+			</div>
+		</div>
+	</div>
+</ng-sidebar-container>
 
 <router-outlet></router-outlet>

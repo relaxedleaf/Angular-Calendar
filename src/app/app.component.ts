@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { faTachometerAlt, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
 	selector: "app-root",
@@ -6,9 +7,12 @@ import { Component } from "@angular/core";
 	styleUrls: ["./app.component.less"]
 })
 export class AppComponent {
-	loadedFeature = "recipe";
+    private _opened: boolean = false;
+    faTachometerAlt = faTachometerAlt;
+    faCalendarAlt = faCalendarAlt;
 
-	onNavigate(feature: string) {
-		this.loadedFeature = feature;
-	}
+    private _toggleSidebar() {
+        this._opened = !this._opened;
+    }
+
 }

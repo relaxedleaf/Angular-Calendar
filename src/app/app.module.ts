@@ -11,6 +11,8 @@ import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
 import { FlatpickrModule } from "angularx-flatpickr";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { SidebarModule } from 'ng-sidebar';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from "./app.component";
 import { NavbarComponent } from "./navbar/navbar.component";
@@ -18,6 +20,7 @@ import { CalendarComponent } from "./calendar/calendar.component";
 import { HeaderComponent } from "./calendar/header/header.component";
 import { BodyComponent } from "./calendar/body/body.component";
 import { CalendarService } from "src/services/calendar.service";
+import { DayClickModalComponent } from "./calendar/modal/day-click-modal/day-click-modal.component";
 
 @NgModule({
 	declarations: [
@@ -25,7 +28,8 @@ import { CalendarService } from "src/services/calendar.service";
 		NavbarComponent,
 		CalendarComponent,
 		HeaderComponent,
-		BodyComponent
+		BodyComponent,
+		DayClickModalComponent
 	],
 	imports: [
 		CommonModule,
@@ -38,9 +42,12 @@ import { CalendarService } from "src/services/calendar.service";
 		CalendarModule.forRoot({
 			provide: DateAdapter,
 			useFactory: adapterFactory
-		})
+        }),
+        SidebarModule.forRoot(),
+        FontAwesomeModule
 	],
 	providers: [CalendarService],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
+	entryComponents: [DayClickModalComponent]
 })
 export class AppModule {}
