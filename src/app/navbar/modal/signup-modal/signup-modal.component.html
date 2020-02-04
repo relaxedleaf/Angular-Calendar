@@ -29,9 +29,10 @@
 						matInput
                         placeholder="Password"
                         [formControl]="password"
-						[type]="hide ? 'password' : 'text'"
+                        [type]="hide ? 'password' : 'text'"
+                        (input)="onPasswordInput()"
                     />
-                    <mat-error *ngIf="email.invalid">{{
+                    <mat-error *ngIf="password.invalid">{{
 						getPasswordErrorMessage()
 					}}</mat-error>
 					<button
@@ -50,18 +51,23 @@
 				<mat-form-field>
 					<input
 						matInput
-						placeholder="Confirm Password"
-						[type]="hide ? 'password' : 'text'"
-					/>
+                        placeholder="Confirm Password"
+                        [formControl]="password_confirmation"
+                        [type]="hideConfirm ? 'password' : 'text'"
+                        (input)="onPasswordInput()"
+                    />
+                    <mat-error *ngIf="password_confirmation.invalid">{{
+						getPasswordConfirmationErrorMessage()
+					}}</mat-error>
 					<button
 						mat-icon-button
 						matSuffix
 						(click)="hideConfirm = !hideConfirm"
 						[attr.aria-label]="'Hide password'"
-						[attr.aria-pressed]="hide"
+						[attr.aria-pressed]="hideConfirm"
 					>
 						<mat-icon>{{
-							hide ? "visibility_off" : "visibility"
+							hideConfirm ? "visibility_off" : "visibility"
 						}}</mat-icon>
 					</button>
 				</mat-form-field>
