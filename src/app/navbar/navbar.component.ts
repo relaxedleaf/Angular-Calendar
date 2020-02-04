@@ -3,6 +3,8 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { SignupModalComponent } from './modal/signup-modal/signup-modal.component';
+import { LoginModalComponent } from './modal/login-modal/login-modal.component';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
 	selector: "app-navbar",
@@ -13,8 +15,9 @@ export class NavbarComponent implements OnInit {
     @Output() onToggle: EventEmitter<any> = new EventEmitter<any>();
     public isMenuCollapsed = true;
     faBars = faBars;
+    user = null;
 
-	constructor(private modalService: NgbModal) {}
+	constructor(private modalService: NgbModal, private authService: AuthService) {}
 
     private _toggleSidebar() {
         this.onToggle.emit();
@@ -24,5 +27,18 @@ export class NavbarComponent implements OnInit {
         this.modalService.open(SignupModalComponent);
     }
 
-	ngOnInit() {}
+    openLoginForm(){
+        this.modalService.open(LoginModalComponent);
+    }
+
+	ngOnInit() {
+        this.authService.user.subscribe(user => {
+            this.user = user;
+        })
+    }
+
+    logout(){
+        this._toggleSidebar();
+        this.authService.logout();
+    }
 }

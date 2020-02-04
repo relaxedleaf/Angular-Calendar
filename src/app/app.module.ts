@@ -37,6 +37,7 @@ import { DayClickModalComponent } from "./calendar/modal/day-click-modal/day-cli
 import { SignupModalComponent } from "./navbar/modal/signup-modal/signup-modal.component";
 import { AuthService } from 'src/services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginModalComponent } from './navbar/modal/login-modal/login-modal.component';
 
 @NgModule({
 	declarations: [
@@ -46,7 +47,8 @@ import { HttpClientModule } from '@angular/common/http';
 		HeaderComponent,
 		BodyComponent,
 		DayClickModalComponent,
-		SignupModalComponent
+		SignupModalComponent,
+		LoginModalComponent
 	],
 	imports: [
         CommonModule,
@@ -78,6 +80,6 @@ import { HttpClientModule } from '@angular/common/http';
 	],
 	providers: [CalendarService, AuthService],
 	bootstrap: [AppComponent],
-	entryComponents: [DayClickModalComponent, SignupModalComponent]
+	entryComponents: [DayClickModalComponent, SignupModalComponent, LoginModalComponent]
 })
 export class AppModule {}
