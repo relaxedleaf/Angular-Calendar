@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { API_CONSTANT } from 'src/app/constants/apiConstants';
+import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
+import { API_CONSTANT } from "src/app/constants/apiConstants";
 
 @Injectable()
 export class AuthService {
@@ -15,6 +15,22 @@ export class AuthService {
 			{
 				email: email
 			}
-        );
+		);
+	}
+
+	signup(first_name, middle_name, last_name, email, password, password_confirmation): Observable<any> {
+        console.log(first_name);
+        console.log(email);
+		return this.http.post(
+			`${environment.api_url}${API_CONSTANT.AUTH_API.SIGNUP}`,
+			{
+				first_name,
+				middle_name,
+				last_name,
+				email,
+                password,
+                password_confirmation
+			}
+		);
 	}
 }
